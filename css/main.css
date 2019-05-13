@@ -1,0 +1,62 @@
+body
+{
+    font-family: monospace;
+    background-color: #333333;
+    color: #e6e6e6;
+}
+
+a:link
+{
+    color: #e6e6e6;
+}
+
+a:visited
+{
+    color: #c2c2c2;
+}
+
+.main-container
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.mainbox
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.timebox, .ipbox, .torbox, .weatherbox, .newsbox, .linkbox, .searchbox
+{
+    display: flex;
+    margin: 8px;
+}
+
+.newsbox
+{
+    min-height: 100px;
+}
+
+form
+{
+    height: 2em;
+    margin: auto;
+    display: flex;
+}
+
+table
+{
+    table-layout: fixed;
+}
+
+td
+{
+    padding-left: 12px;
+    padding-right: 12px;
+    white-space: nowrap;
+}
