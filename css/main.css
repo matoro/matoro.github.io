@@ -5,6 +5,11 @@ body
     color: #e6e6e6;
 }
 
+table
+{
+    font-size: 12px;
+}
+
 a:link
 {
     color: #e6e6e6;
