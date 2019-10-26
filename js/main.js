@@ -166,7 +166,7 @@ function load_remote_services()
                 var remote_string_ip = remote_response.YourFuckingIPAddress + \", \"\n \
                     + remote_response.YourFuckingISP + \", \"\n \
                     + remote_response.YourFuckingLocation;\n \
-                if(remote_response.YourFuckingTorExit === \"false\")\n \
+                if(remote_response.YourFuckingTorExit === false)\n \
                 {\n \
                     var remote_string_tor = \"no\";\n \
                 }\n \
