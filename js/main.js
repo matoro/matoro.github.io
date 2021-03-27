@@ -47,16 +47,15 @@ function process_user_configuration(configdata)
     load_remote_services();
 }
 
+// The timebox accepts two attributes:
+//  "locale" which sets the default way the date is rendered
+//  "options", which corresponds to a DateTimeFormat object:
+//  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat
 function populate_timebox()
 {
-    var date = new Date();
-    date.setTime(date.getTime() + (global_configdata.boxes.timebox.timezone * 3600000));
-    document.getElementById("timetext").textContent = format_date_for_timebox(date);
-}
-
-function format_date_for_timebox(date)
-{
-    return date.getFullYear() + "/" + ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) + " " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2) + ":" + ("0" + date.getSeconds()).slice(-2);
+    var locale = global_configdata.boxes.timebox.hasOwnProperty("locale") ? global_configdata.boxes.timebox.locale : "en-US";
+    var options = global_configdata.boxes.timebox.hasOwnProperty("options") ? global_configdata.boxes.timebox.options : {};
+    document.getElementById("timetext").textContent = ((new Date()).toLocaleString(locale, options));
 }
 
 function populate_ipbox(ipdata)
@@ -71,7 +70,6 @@ function populate_torbox(tordata)
 
 function populate_weatherbox(weatherdata)
 {
-    //document.getElementById("weathertext").textContent = weatherdata.query.results.channel.item.condition.text + ", " + weatherdata.query.results.channel.item.condition.temp + " degrees";
     document.getElementById("weathertext").textContent = weatherdata.main.temp + " degrees, " + weatherdata.weather[0].description;
 }
 
