@@ -98,6 +98,7 @@ function populate_linkbox(linkdata)
             var td = document.createElement("td");
             var linktext = document.createElement("a");
             linktext.setAttribute("href", linkdata.groups[group].links[link].url);
+            linktext.setAttribute("rel", "noreferrer noopener");
             linktext.appendChild(document.createTextNode(linkdata.groups[group].links[link].title));
             td.appendChild(linktext);
             tr.appendChild(td);
