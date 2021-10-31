@@ -6,26 +6,26 @@
         <script src="js/main.js" type="text/javascript"></script>
     </head>
     <body onload="load_dynamic_content()">
-        <div class="main-container">
-            <div class="mainbox">
-                <div class="timebox">
-                    <p id="timeprompt"></p>&nbsp;<p id="timetext"></p>
+        <div id="main-container">
+            <div id="mainbox">
+                <div id="timebox" class="box">
+                    <p id="timeprompt" class="prompt"></p>&nbsp;<p id="timetext"></p>
                 </div>
                 <br>
-                <div class="ipbox">
-                    <p id="ipprompt"></p>&nbsp;<p id="iptext"></p>
+                <div id="ipbox" class="box">
+                    <p id="ipprompt" class="prompt"></p>&nbsp;<p id="iptext"></p>
                 </div>
                 <br>
-                <div class="torbox">
-                    <p id="torprompt"></p>&nbsp;<p id="tortext"></p>
+                <div id="torbox" class="box">
+                    <p id="torprompt" class="prompt"></p>&nbsp;<p id="tortext"></p>
                 </div>
                 <br>
-                <div class="weatherbox">
-                    <p id="weatherprompt"></p>&nbsp;<p id="weathertext"></p>
+                <div id="weatherbox" class="box">
+                    <p id="weatherprompt" class="prompt"></p>&nbsp;<p id="weathertext"></p>
                 </div>
                 <br>
-                <div class="newsbox">
-                    <p id="newsprompt"></p>&nbsp;
+                <div id="newsbox" class="box">
+                    <p id="newsprompt" class="prompt"></p>&nbsp;
                     <br>
                     <table id="newstable">
                         <tbody>
@@ -33,8 +33,17 @@
                     </table>
                 </div>
                 <br>
-                <div class="linkbox">
-                    <p id="linkprompt"></p>&nbsp;
+                <div id="rssbox" class="box">
+                    <p id="rssprompt" class="prompt"></p>&nbsp;
+                    <br>
+                    <table id="rsstable">
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <div id="linkbox" class="box">
+                    <p id="linkprompt" class="prompt"></p>&nbsp;
                     <br>
                     <table id="linktable">
                         <tbody>
@@ -42,8 +51,8 @@
                     </table>
                 </div>
                 <br>
-                <div class="searchbox">
-                    <p id="searchprompt"></p>&nbsp;<p id="searchtext"></p>
+                <div id="searchbox" class="box">
+                    <p id="searchprompt" class="prompt"></p>&nbsp;<p id="searchtext"></p>
                 </div>
             </div>
         </div>

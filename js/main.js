@@ -33,7 +33,7 @@ function process_user_configuration(configdata)
     document.getElementById("weathertext").textContent = configdata.placeholder;
 
     document.getElementById("newsprompt").textContent = configdata.boxes.newsbox.prompt;
-
+    document.getElementById("rssprompt").textContent = configdata.boxes.rssbox.prompt;
     document.getElementById("linkprompt").textContent = configdata.boxes.linkbox.prompt;
 
     document.getElementById("searchprompt").textContent = configdata.boxes.searchbox.prompt;
@@ -83,6 +83,18 @@ function populate_newsbox(newsdata)
     cell.appendChild(story);
     tr.appendChild(cell);
     document.getElementById("newstable").getElementsByTagName("tbody")[0].appendChild(tr);
+}
+
+function populate_rssbox(rssdata)
+{
+    var tr = document.createElement("tr");
+    var cell = document.createElement("td");
+    var item = document.createElement("a");
+    item.appendChild(document.createTextNode(rssdata.title));
+    item.setAttribute("href", rssdata.url);
+    cell.appendChild(item);
+    tr.appendChild(cell);
+    document.getElementById("rsstable").getElementsByTagName("tbody")[0].appendChild(tr);
 }
 
 function populate_linkbox(linkdata)
@@ -235,6 +247,31 @@ function load_remote_services()
         remote_request_news.open(\"GET\", \"https://hacker-news.firebaseio.com/v0/topstories.json\", true);\n \
         remote_request_news.send();";
     document.head.appendChild(remote_service_news);
+
+    //Remote service:   Miniflux (self-hosted)
+    //Populates:        rssbox
+    //Rate limit:       N/A (self-hosted)
+    //Documentation:    https://miniflux.app/docs/api.html
+    //Note, make sure you allow CORS access!
+    var remote_service_rss = document.createElement("script");
+    remote_service_rss.setAttribute("type", "application/javascript");
+    remote_service_rss.text = " \
+        var remote_request_rss = new XMLHttpRequest();\n \
+        remote_request_rss.onreadystatechange = function()\n \
+        {\n \
+            if(this.readyState === 4 && this.status === 200)\n \
+            {\n \
+                for(var ticker = 0; ticker < Math.min((JSON.parse(this.responseText)).total, global_configdata.boxes.rssbox.items); ticker++)\n \
+                {\n \
+                    populate_rssbox(JSON.parse(this.responseText).entries[ticker]);\n \
+                }\n \
+            }\n \
+        };\n \
+        remote_request_rss.overrideMimeType(\"application/json\");\n \
+        remote_request_rss.open(\"GET\", \"https://\" + global_configdata.boxes.rssbox.host + \"/v1/entries?direction=desc&limit=\" + global_configdata.boxes.rssbox.items, true);\n \
+        remote_request_rss.setRequestHeader(\"X-Auth-Token\", global_configdata.boxes.rssbox.apikey);\n \
+        remote_request_rss.send();";
+    document.head.appendChild(remote_service_rss);
 
     /*
     var remote_service_stocks = document.createElement("script")
